@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Weather On The Go</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.poptrox.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.scrollex.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-wide.css" />
+			<link rel="stylesheet" href="css/style-normal.css" />
+			<link rel="stylesheet" href="css/index.css" />
+			<link rel="stylesheet" href="css/standardize.css" />
+		</noscript>
+		</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+
+				<!-- Logo -->
+					<h1 id="logo">Weather On The Go!</h1>
+
+		
+					
+			</header>
+
+		<!-- Intro -->
+			<section id="intro" class="main style1 dark fullscreen">
+				<div class="content container 75%">
+					<header>
+						<h2>Hey.</h2>
+					</header>
+					<p>Welcome to <strong>Weather On The GO!</strong> a weather web-app created as a part of the project TriHacker Round 4 
+					IIIT Allahabad by Sourin,Sudanshu,Aditya built by using web templates,Js and Jquery
+					and released for free under <strong>the Triffyndor license</strong></a>.
+					Move below to see the current weather of any place.</p>
+					<footer>
+						<a href="#one" class="button style2 down">More</a>
+					</footer>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="main style1  dark fullscreen">
+			<div class="content container 75%">
+		                   <p>There you go.Enter the name of any place and click on Submit</p>	
+		                   <form action="#two">
+		                      <div class="row 50%">
+									<div class="12u"><input type="text" id="userInput" placeholder="Name" /></div>
+									
+								</div>
+		                      <div class="row">
+									<div class="12u">
+										<ul class="actions">
+											<li><input type="submit" onClick="test()" value="Submit" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+							</div>
+                <!--<div class="content box style2">	
+					
+                          <p class="location">LOCATION</p>
+                          <img src="images/icon-1.svg" alt="" width=50><p class="temperature">TEMPERATURE</p>
+                          <img src="images/icon-umberella.png" alt=""><p class="humidity">HUMIDITY</p>
+                          <img src="images/icon-wind.png" alt=""><p class="windspeed">WINDSPEED</p>
+                          <img src="images/icon-compass.png" alt=""><p class="direction">WIND DIRECTION</p>
+                    
+				</div>-->
+					<script type="text/javascript">
+                            function test(){
+                               var userInput = document.getElementById("userInput").value;
+                               document.getElementById("location").innerHTML = userInput;
+                               $.getJSON("http://api.openweathermap.org/data/2.5/weather?q="+userInput+"&APPID=36b03cf61e2ecdaeabbd84f6b78c6e13", function(data){  
+                               document.getElementById("temp").innerHTML=Math.round(data.main.temp-273)+"<sup>o</sup>C";
+	                           document.getElementById("hum").innerHTML=data.main.humidity+"%";
+	                           document.getElementById("wind").innerHTML=data.wind.speed+"m/s";
+	                           //document.getElementById("dir").innerHTML=data.wind.deg+"<sup>o</sup>";
+	                           
+                              // var date=new Date();
+                              //document.getElementById("Day").innerHTML=date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear();
+                              // document.getElementById("Date").innerHTML=date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();			            
+	                                               });    
+                                           }
+                        </script>
+				<a href="#two" class="button style2 down anchored">Next</a>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="main style2 left dark fullscreen">
+				<p align="center">Move below!!!There's something more</p>
+				<div class="content box style2">
+					<p id="location" class="Location">LOCATION</p>
+                          <img src="images/icon-1.svg" alt="" width=50><p id="temp" class="temperature">TEMPERATURE</p>
+                          <img src="images/icon-umberella.png" alt=""><p class="humidity" id="hum">HUMIDITY</p>
+                          <img src="images/icon-wind.png" alt=""><p class="windspeed" id="wind">WINDSPEED</p>
+                         
+				</div>
+				
+				
+				
+				<a href="#onea" class="button style2 down anchored">Next</a>
+			</section>
+
+		
+		<section id="onea" class="main style1  dark fullscreen">
+			<div class="content container 75%">
+		                   <p>Surprise!Now You Can Even Check The Average Weather of 3 places.!!You know what to do..</p>	
+		                   <form action="#twoa">
+		                      <div class="row 50%">
+									<div class="12u"><input type="text" id="userInput1" placeholder="Name" /></div>
+									<div class="12u"><input type="text" id="userInput2" placeholder="Name" /></div>
+									<div class="12u"><input type="text" id="userInput3" placeholder="Name" /></div>
+
+									
+								</div>
+		                      <div class="row">
+									<div class="12u">
+										<ul class="actions">
+											<li><input type="submit" onClick="test1()" value="Submit" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+							</div>
+                
+					<script type="text/javascript">
+                            function test1(){
+                               var userInput1 = document.getElementById("userInput1").value;
+                               var userInput2 = document.getElementById("userInput2").value;
+                               var userInput3 = document.getElementById("userInput3").value;
+                               document.getElementById("location1").innerHTML = "Average Of "+userInput1+" "+userInput2+" "+userInput3;
+                               var sum1=0,sum2=0,sum3=0;
+                               $.getJSON("http://api.openweathermap.org/data/2.5/weather?q="+userInput1+"&APPID=36b03cf61e2ecdaeabbd84f6b78c6e13", function(data){  
+                               sum1=sum1+data.main.temp-273;//console.log(sum1);
+	                           sum2+=data.main.humidity+0;
+	                           sum3+=data.wind.speed+0;
+	                           document.getElementById("temp1").innerHTML=Math.round(sum1/3)+"<sup>o</sup>C";
+	                             document.getElementById("hum1").innerHTML=Math.round(sum2/3)+"%";
+	                             document.getElementById("wind1").innerHTML=Math.round(sum3/3)+"m/s";
+	                          		          });    
+							   $.getJSON("http://api.openweathermap.org/data/2.5/weather?q="+userInput2+"&APPID=36b03cf61e2ecdaeabbd84f6b78c6e13", function(data){  
+                               sum1=sum1+data.main.temp-273;//console.log(sum1);
+	                           sum2+=data.main.humidity+0;
+	                           sum3+=data.wind.speed+0;
+	                           document.getElementById("temp1").innerHTML=Math.round(sum1/3)+"<sup>o</sup>C";
+	                             document.getElementById("hum1").innerHTML=Math.round(sum2/3)+"%";
+	                             document.getElementById("wind1").innerHTML=Math.round(sum3/3)+"m/s";
+	                          		          });    
+                               $.getJSON("http://api.openweathermap.org/data/2.5/weather?q="+userInput3+"&APPID=36b03cf61e2ecdaeabbd84f6b78c6e13", function(data){  
+                               sum1=sum1+data.main.temp-273;//console.log(sum1);
+	                           sum2+=data.main.humidity+0;
+	                           sum3+=data.wind.speed+0;
+	                           document.getElementById("temp1").innerHTML=Math.round(sum1/3)+"<sup>o</sup>C";
+	                             document.getElementById("hum1").innerHTML=Math.round(sum2/3)+"%";
+	                             document.getElementById("wind1").innerHTML=Math.round(sum3/3)+"m/s";
+	                          		          });
+	                          		          }  
+
+       </script>
+				<a href="#twoa" class="button style2 down anchored">Next</a>
+			</section>
+
+		<section id="twoa" class="main style2 left dark fullscreen">
+				<p align="center">Scroll Down Plzz...</p>
+				<div class="content box style2">
+					<p id="location1" class="Location">LOCATION</p>
+                          <img src="images/icon-1.svg" alt="" width=50><p id="temp1" class="temperature">TEMPERATURE</p>
+                          <img src="images/icon-umberella.png" alt=""><p class="humidity" id="hum1">HUMIDITY</p>
+                          <img src="images/icon-wind.png" alt=""><p class="windspeed" id="wind1">WINDSPEED</p>
+                          
+			    </div>
+
+				
+				
+				
+				<a href="#begin" class="button style2 down anchored">Next</a>
+			</section>
+
+		<section id="begin" class="main style3 secondary">
+		     <div class="content container 75%">
+					<header>
+						<h2>Thank You.</h2>
+					</header>
+					<p>Scroll Down for giving us your valuable reviews.
+					</p>
+					<footer>
+						<a href="#contact" class="button style2 down">More</a>
+					</footer>
+				</div>              
+		</section>
+			
+			<section id="contact" class="main style3 secondary">
+				<div class="content container">
+					<header>
+						<h2>Say Hello.</h2>
+						<p>Give your reviews...</p>
+					</header>
+					<div class="box container 75%">
+
+					<!-- Contact Form -->
+							<form method="post" action="mailto:itm2016002@iiita.ac.in">
+								<div class="row 50%">
+									<div class="6u"><input type="text" name="name" placeholder="Name" /></div>
+									<div class="6u"><input type="email" name="email" placeholder="Email" /></div>
+								</div>
+								<div class="row 50%">
+									<div class="12u"><textarea name="message" placeholder="Message" rows="6"></textarea></div>
+								</div>
+								<div class="row">
+									<div class="12u">
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+
+				<!-- Icons -->
+					<ul class="actions">
+						<li><a href="https://www.twitter.com" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https:///www.fb.com" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="https://www.google.com" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+						<li><a href="https://www.dribble.com" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="https://www.pinterest.com" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+						<li><a href="https://www.instagram.com" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					</ul>
+
+				<!-- Menu -->
+					
+
+			</footer>
+			<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
